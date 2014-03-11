@@ -1,6 +1,12 @@
-module Util.File where
+module Util.File (
+  recurseDirs
+, allDirs
+, allFiles
+, mkdir_p
+, mkdir
+) where
 
-import Control.Monad (forM, filterM)
+import Control.Monad
 import System.Directory
 import System.FilePath ((</>))
 
@@ -26,3 +32,14 @@ allDirs dir = do
 
 allFiles :: FilePath -> IO [FilePath]
 allFiles dir = getDirectoryContents dir >>= filterM doesFileExist
+
+mkdir_p :: [FilePath] -> IO FilePath
+mkdir_p = foldM (\acc i -> mkdir (acc </> i) >> return (acc </> i)) ""
+
+mkdir :: FilePath -> IO ()
+mkdir fp = do
+  b <- doesDirectoryExist fp
+  if b then
+    return ()
+  else
+    createDirectory fp
