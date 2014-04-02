@@ -3,7 +3,6 @@ module Util.Misc where
 import           Control.Monad (replicateM)
 import           Control.Monad.State (get)
 import qualified Data.ByteString as B
-import qualified MonadLib as ML
 
 infinity :: Double
 infinity = read "Infinity"
