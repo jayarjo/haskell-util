@@ -5,20 +5,6 @@ import           Control.Monad.State (get)
 import qualified Data.ByteString as B
 import qualified MonadLib as ML
 
-instance Integral Float where
-  quotRem a b = (fab, (ab - fab)*b)
-    where
-      ab = a/b
-      fab = floor ab
-  toInteger = floor
-
-instance Integral Double where
-  quotRem a b = (fab, (ab - fab)*b)
-    where
-      ab = a/b
-      fab = floor ab
-  toInteger = floor
-
 replicateM' :: (Monad m, Integral i) => m a -> i -> m [a]
 replicateM' m i = Control.Monad.replicateM (fromIntegral i) m
 
