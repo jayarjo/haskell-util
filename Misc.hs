@@ -5,6 +5,12 @@ import           Control.Monad.State (get)
 import qualified Data.ByteString as B
 import qualified MonadLib as ML
 
+infinity :: Double
+infinity = read "Infinity"
+
+ninfinity :: Double
+ninfinity = read "-Infinity"
+
 replicateM' :: (Monad m, Integral i) => m a -> i -> m [a]
 replicateM' m i = Control.Monad.replicateM (fromIntegral i) m
 
