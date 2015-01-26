@@ -1,7 +1,6 @@
 module Util.Misc where
 
 import           Control.Monad (replicateM)
-import           Control.Monad.State (get)
 import qualified Data.ByteString as B
 
 infinity :: Double
@@ -12,15 +11,6 @@ ninfinity = read "-Infinity"
 
 replicateM' :: (Monad m, Integral i) => m a -> i -> m [a]
 replicateM' m i = Control.Monad.replicateM (fromIntegral i) m
-
-allBytes f = do
-  bs <- get
-  if B.null bs
-    then return []
-    else do
-      x <- f
-      xs <- allBytes f
-      return $ x:xs
 
 forN :: (Ord n, Num n, Monad m)
      => (a -> m a)
